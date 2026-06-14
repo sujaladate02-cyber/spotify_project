@@ -80,6 +80,11 @@ async function loginUser(req, res) {
 
     res.cookie("token", token)
 
+    console.log("After JWT");
+
+    res.cookie("token", token);
+
+    console.log("After cookie");
 
     res.status(200).json({
         message: "User logged in successfully",
