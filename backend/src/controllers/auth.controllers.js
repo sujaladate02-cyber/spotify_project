@@ -32,7 +32,6 @@ async function registerUser(req, res) {
         role: user.role,
     }, process.env.JWT_SECRET)
 
-
     res.cookie("token", token)
 
 
@@ -80,12 +79,6 @@ async function loginUser(req, res) {
 
     res.cookie("token", token)
 
-    console.log("After JWT");
-
-    res.cookie("token", token);
-
-    console.log("After cookie");
-
     res.status(200).json({
         message: "User logged in successfully",
         user: {
@@ -101,10 +94,21 @@ async function loginUser(req, res) {
 
 }
 
+async function getProfile(req, res) {
+
+    const user = await userModel
+        .findById(req.user.id)
+        .select("-password");
+
+    res.status(200).json({
+        user
+    });
+}
+
 async function logoutUser(req, res) {
     res.clearCookie("token")
     res.status(200).json({ message: "User logged out successfully" })
 }
 
 
-module.exports = { registerUser, loginUser, logoutUser }
+module.exports = { registerUser, loginUser, logoutUser, getProfile }

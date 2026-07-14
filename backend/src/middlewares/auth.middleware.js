@@ -44,6 +44,9 @@ async function authUser(req, res, next) {
         // console.log("Cookies:", req.cookies);
         // console.log("Token:", token);
 
+        // console.log(req.cookies);
+        // console.log(req.cookies.token);
+
 
         if (decoded.role !== "user") {
             return res.status(403).json({ message: "You don't have access" })
