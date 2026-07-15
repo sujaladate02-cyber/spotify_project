@@ -8,7 +8,7 @@ const app = express();
 app.use(express.json());
 app.use(cookieparser());
 app.use(cors({
-  origin: "https://spotify-frontend-bice.vercel.app/",
+  origin: "https://spotify-frontend-bice.vercel.app",
   credentials: true
 }));
 
