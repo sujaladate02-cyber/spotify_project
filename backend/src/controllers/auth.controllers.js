@@ -5,8 +5,10 @@ const bcrypt = require("bcryptjs");
 
 async function registerUser(req, res) {
 
-    const { username, email, password, role = "user" } = req.body;
+  try{
 
+      const { username, email, password, role = "user" } = req.body;
+      
     const isUserAlreadyExists = await userModel.findOne({
         $or: [
             { username },
@@ -48,7 +50,15 @@ async function registerUser(req, res) {
             role: user.role,
         }
     })
+    
+}
+catch(err){
+    console.error("REGISTER ERROR:", err);
+        return res.status(500).json({
+            message: err.message
+        });
 
+}
 }
 
 

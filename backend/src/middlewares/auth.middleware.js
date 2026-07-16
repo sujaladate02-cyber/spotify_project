@@ -35,6 +35,7 @@ async function authUser(req, res, next) {
 
     if (!token) {
         return res.status(401).json({ message: "Unauthorized" })
+        
     }
 
     try {
